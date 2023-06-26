@@ -19,5 +19,5 @@ jobs:
       
       - name: benchmark
         run: |
-          diskspd-for-linux\bin\diskspd -c2G -w100 -b4K -F8 -r -o32 -W60 -d60 -Sh c:\testfile.dat
+          diskspd-for-linux/bin/diskspd -c2G -w100 -b4K -F8 -r -o32 -W60 -d60 -Sh c:\testfile.dat
       
