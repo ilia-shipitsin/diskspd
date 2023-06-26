@@ -1,0 +1,23 @@
+name: Linux
+
+on: [ "push", "pull_request", "workflow_dispatch" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: install diskspd
+        run: |
+          sudo apt-get update
+          sudo apt install libaio-dev 
+          git clone https://github.com/microsoft/diskspd-for-linux
+          cd diskspd-for-linux
+          make
+      
+      - name: benchmark
+        run: |
+          diskspd-for-linux\bin\diskspd -c2G -w100 -b4K -F8 -r -o32 -W60 -d60 -Sh c:\testfile.dat
+      
